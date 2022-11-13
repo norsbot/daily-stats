@@ -13,7 +13,7 @@ export const sendWebhook = (stats: IBotStats) => {
             icon_url: 'https://cdn.discordapp.com/avatars/681137419663441933/fffeb1863e2a2ba2ecdd85135c308b02.png',
         },
         timestamp: new Date(),
-        color: stats.currentGuilds > stats.previousGuilds ? 0xe74c3c : 0x2ecc71,
+        color: stats.currentGuilds >= stats.previousGuilds ? 0x2ecc71 : 0xe74c3c,
         description: `Tarih: ${new Date().toLocaleString("tr").split(" ")[0]}`,
         fields: [
             {
@@ -33,9 +33,9 @@ export const sendWebhook = (stats: IBotStats) => {
             }
         ]
     }
-    embed.description += `\nSunucu Sayısı: ${stats.currentGuilds} (+${stats.currentGuilds - stats.previousGuilds})`;
-    embed.description += `\nOy Sayısı: ${stats.currentVotes} (+${stats.currentVotes - stats.previousVotes})`;
-    embed.description += `\nBüyüme Oranı: ${(stats.currentGuilds - stats.previousGuilds) / stats.previousGuilds * 100}%`;
+    embed.description += `\nSunucu Sayısı: ${stats.currentGuilds} (${stats.currentGuilds - stats.previousGuilds > 0 ? '+' : ''}${stats.currentGuilds - stats.previousGuilds})`;
+    embed.description += `\nOy Sayısı: ${stats.currentVotes} (${stats.currentVotes - stats.previousVotes > 0 ? '+' : ''}${stats.currentVotes - stats.previousVotes})`;
+    embed.description += `\nBüyüme Oranı: %${((stats.currentGuilds - stats.previousGuilds) / stats.previousGuilds * 100).toFixed(2)}`;
 
     axios.post(url, {
         embeds: [embed]
