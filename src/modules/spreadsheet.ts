@@ -12,7 +12,7 @@ export default class SpreadsheetAPI {
             private_key: process.env.GOOGLE_SERVICE_ACCOUNT_KEY?.replace(/\\n/g, '\n') ?? '',
         });
         await this.doc.loadInfo();
-        this.sheet = this.doc.sheetsByTitle['BotStats'] ?? await this.doc.addSheet({ title: 'BotStats', headerValues: ['date', 'guilds', 'votes'] });
+        this.sheet = this.doc.sheetsByTitle['BotStats'] ?? await this.doc.addSheet({ title: 'BotStats', headerValues: ['Date', 'Guilds', 'Votes', "New Guilds", "New Votes", "Growth Rate"] });
         if (!this.sheet) {
             throw new Error("Sheet not found");
         }
@@ -21,16 +21,19 @@ export default class SpreadsheetAPI {
     async getLastRowData() {
         let rows = await this.sheet.getRows();
         return {
-            previousGuilds: rows[rows.length - 1].guilds ?? 0,
-            previousVotes: rows[rows.length - 1].votes ?? 0,
+            previousGuilds: rows[rows.length - 1]?.Guilds ?? 0,
+            previousVotes: rows[rows.length - 1]?.Votes ?? 0,
         }
     }
 
     async addRowData(data: any) {
         await this.sheet.addRow({
-            date: new Date().toLocaleString("tr").split(" ")[0],
-            guilds: data.currentGuilds,
-            votes: data.currentVotes,
+            Date: new Date().toLocaleString("tr").split(" ")[0],
+            Guilds: data.currentGuilds,
+            Votes: data.currentVotes,
+            "New Guilds": data.currentGuilds - data.previousGuilds,
+            "New Votes": data.currentVotes - data.previousVotes,
+            "Growth Rate": ((data.currentGuilds - data.previousGuilds) / (data.previousGuilds || 1) * 100).toFixed(2),
         });
     }
 }

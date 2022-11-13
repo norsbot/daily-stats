@@ -13,13 +13,13 @@ async function run() {
         await spreadsheet.initialize();
         const prevStats = await spreadsheet.getLastRowData();
         const botStats = await getBotStats();
-        await spreadsheet.addRowData(botStats);
         const stats: IBotStats = {
             currentGuilds: botStats.currentGuilds,
             currentVotes: botStats.currentVotes,
             previousGuilds: prevStats.previousGuilds,
             previousVotes: prevStats.previousVotes,
         }
+        await spreadsheet.addRowData(stats);
         sendWebhook(stats);
     } catch (error) {
         console.log(error);

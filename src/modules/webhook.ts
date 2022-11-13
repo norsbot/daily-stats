@@ -35,7 +35,7 @@ export const sendWebhook = (stats: IBotStats) => {
     }
     embed.description += `\nSunucu Sayısı: ${stats.currentGuilds} (${stats.currentGuilds - stats.previousGuilds > 0 ? '+' : ''}${stats.currentGuilds - stats.previousGuilds})`;
     embed.description += `\nOy Sayısı: ${stats.currentVotes} (${stats.currentVotes - stats.previousVotes > 0 ? '+' : ''}${stats.currentVotes - stats.previousVotes})`;
-    embed.description += `\nBüyüme Oranı: %${((stats.currentGuilds - stats.previousGuilds) / stats.previousGuilds * 100).toFixed(2)}`;
+    embed.description += `\nBüyüme Oranı: %${((stats.currentGuilds - stats.previousGuilds) / (stats.previousGuilds || 1) * 100).toFixed(2)}`;
 
     axios.post(url, {
         embeds: [embed]
