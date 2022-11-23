@@ -1,8 +1,8 @@
-# Nors Bot Daily Stats Service
+# Nors Bot Daily Stats Service (WIP)
 
 ## What is this?
 
-This is a service that will send the stats of your bot to discord webhook. Using google spreadsheet as a database. Any contributions are welcome.
+This is a service that will send the stats of your bot to discord webhook. Using google spreadsheet as a database. The project is in development so any contributions are welcome.
 
 [Example spreadsheet](https://docs.google.com/spreadsheets/d/1mi2TmDPEH0Y-SLNLEk4gcLTTxK0u5fxLLGRVRm4puqE?usp=sharing)
 
