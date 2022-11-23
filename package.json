@@ -3,22 +3,25 @@
   "version": "1.0.0",
   "description": "",
   "main": "build/index.js",
+  "bin": "build/index.js",
   "scripts": {
     "start": "ts-node src/index.ts",
-    "build": "tsc",
+    "build": "rimraf build && tsc",
+    "build:pkg:linux": "yarn build && pkg -t node18-linux-x64 -o build/daily-stats-linux-x64 .",
+    "build:pkg:win": "yarn build && pkg -t node18-win-x64 -o build/daily-stats-win-x64 .",
     "start:prod": "node build/index.js"
   },
   "author": "SinecKers",
   "license": "ISC",
   "dependencies": {
     "@top-gg/sdk": "^3.1.3",
-    "axios": "^1.1.3",
     "dotenv": "^16.0.3",
     "google-spreadsheet": "^3.3.0"
   },
   "devDependencies": {
     "@types/google-spreadsheet": "^3.3.0",
     "@types/node": "^18.11.9",
+    "rimraf": "^3.0.2",
     "typescript": "^4.8.4"
   }
 }

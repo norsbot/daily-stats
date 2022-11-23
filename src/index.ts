@@ -1,5 +1,4 @@
-import * as dotenv from 'dotenv'
-import { createServer } from 'http';
+import * as dotenv from 'dotenv';
 import { getBotStats } from './modules/topgg';
 import SpreadsheetAPI from './modules/spreadsheet';
 import { sendWebhook } from './modules/webhook';

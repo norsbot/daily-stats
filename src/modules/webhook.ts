@@ -1,4 +1,3 @@
-import axios from 'axios';
 import { IBotStats } from '../interfaces/index';
 
 export const sendWebhook = (stats: IBotStats) => {
@@ -6,7 +5,6 @@ export const sendWebhook = (stats: IBotStats) => {
     if (!url) {
         return new Error('No webhook URL provided');
     }
-    //discord embed
     const embed = {
         author: {
             name: 'Nors Bot Günlük İstatistik',
@@ -14,7 +12,7 @@ export const sendWebhook = (stats: IBotStats) => {
         },
         timestamp: new Date(),
         color: stats.currentGuilds >= stats.previousGuilds ? 0x2ecc71 : 0xe74c3c,
-        description: `Tarih: ${new Date().toLocaleString("tr").split(" ")[0]}`,
+        description: `**Tarih: ${new Date().toLocaleString("tr").split(" ")[0]}**\n`,
         fields: [
             {
                 name: "Davet Et",
@@ -37,10 +35,18 @@ export const sendWebhook = (stats: IBotStats) => {
     embed.description += `\nOy Sayısı: ${stats.currentVotes} (${stats.currentVotes - stats.previousVotes > 0 ? '+' : ''}${stats.currentVotes - stats.previousVotes})`;
     embed.description += `\nBüyüme Oranı: %${((stats.currentGuilds - stats.previousGuilds) / (stats.previousGuilds || 1) * 100).toFixed(2)}`;
 
-    axios.post(url, {
-        embeds: [embed]
+    //@ts-ignore
+    fetch(url, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            embeds: [embed]
+        }),
     }).then(() => {
         console.log('Webhook sent');
+        //@ts-ignore
     }).catch((err) => {
         return err;
     });

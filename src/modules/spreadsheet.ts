@@ -1,5 +1,4 @@
 import { GoogleSpreadsheet, GoogleSpreadsheetWorksheet } from 'google-spreadsheet';
-import fs from 'fs';
 export default class SpreadsheetAPI {
     private doc!: GoogleSpreadsheet;
     private sheet!: GoogleSpreadsheetWorksheet;
