@@ -7,8 +7,8 @@
   "scripts": {
     "start": "ts-node src/index.ts",
     "build": "rimraf build && tsc",
-    "build:pkg:linux": "yarn build && pkg -t node18-linux-x64 -o build/daily-stats-linux-x64 .",
-    "build:pkg:win": "yarn build && pkg -t node18-win-x64 -o build/daily-stats-win-x64 .",
+    "build:pkg:linux": "yarn build && pkg -t node18-linux-x64 -o build/daily-stats-linux-x64 build/index.js",
+    "build:pkg:win": "yarn build && pkg -t node18-win-x64 -o build/daily-stats-win-x64 build/index.js",
     "start:prod": "node build/index.js"
   },
   "author": "SinecKers",
@@ -19,10 +19,10 @@
     "google-spreadsheet": "^3.3.0"
   },
   "devDependencies": {
-    "@types/google-spreadsheet": "^3.3.0",
-    "@types/node": "^18.11.9",
-    "pkg": "^5.8.0",
-    "rimraf": "^3.0.2",
-    "typescript": "^4.8.4"
+    "@types/google-spreadsheet": "^3.3.1",
+    "@types/node": "^18.15.3",
+    "pkg": "^5.8.1",
+    "rimraf": "^4.4.0",
+    "typescript": "^4.9.5"
   }
 }
