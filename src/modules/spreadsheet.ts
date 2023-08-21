@@ -27,7 +27,7 @@ export default class SpreadsheetAPI {
 
     async addRowData(data: any) {
         await this.sheet.addRow({
-            Date: new Date().toLocaleString("tr").split(" ")[0],
+            Date: new Date().toLocaleString("tr-TR").split(" ")[0],
             Guilds: data.currentGuilds,
             Votes: data.currentVotes,
             "New Guilds": data.currentGuilds - data.previousGuilds,
