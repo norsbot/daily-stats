@@ -19,7 +19,7 @@ This is a service that will send the stats of your bot to discord webhook. Using
 
 ## Using executables 
 
-1. Download the latest release from Releases tab
+1. Download the latest release from [Releases](https://github.com/norsbot/daily-stats/releases) tab
 2. Extract the zip file
 3. Edit .env.example and rename it to .env
 4. Fill in the required fields (For Google Service Account See [here](https://cloud.google.com/iam/docs/creating-managing-service-account-keys))
